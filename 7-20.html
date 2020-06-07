@@ -141,7 +141,8 @@
         changeTo(index);
       }
       function changeTo(index) {
-        $('#image li').eq(index).addClass('opa').siblings().removeClass('opa');
+       $('#image li').eq(index).addClass('opa').siblings().removeClass('opa');
+       $('#point li').eq(index).addClass("on").siblings().removeClass("on");
         
       }
       $('#pre').click(function () {
