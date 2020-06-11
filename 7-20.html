@@ -121,10 +121,11 @@
     </div>
     <script src="jquery.js"></script>
     <script>
-      //初始化
+  //初始化
       var index = 0;
       var t;
-      var length = $('ul li').length;
+      var stop=false;
+      var length = $('#point li').length;
 
       $('#image li').eq(index).addClass('opa');
 
@@ -134,23 +135,25 @@
         index=$(this).index();
         $('#image li').eq(index).addClass('opa').siblings().removeClass('opa');
     });
-      setInterval(autoMove, 2000);
+      var time=setInterval(autoMove, 2000);
       function autoMove() {
+        if(stop) return;
         index++;
         if (index >= length) index = 0;
         changeTo(index);
       }
       function changeTo(index) {
-       $('#image li').eq(index).addClass('opa').siblings().removeClass('opa');
-       $('#point li').eq(index).addClass("on").siblings().removeClass("on");
-        
+        $('#image li').eq(index).addClass('opa').siblings().removeClass('opa');
+        $('#point li').eq(index).addClass("on").siblings().removeClass("on");
       }
       $('#pre').click(function () {
+        clearInterval(time);
         index--;
         if (index < 0) index = length - 1;
         changeTo(index);
       });
       $('#next').click(function () {
+        clearInterval(time);
         index++;
         if (index >= length) index = 0;
         changeTo(index);
